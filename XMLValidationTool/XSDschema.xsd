@@ -1,19 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd"
-           targetNamespace="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd"
-           elementFormDefault="qualified"
+<xsd:schema  id="ExampleSchema"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd"
+		xmlns:mstns="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd"
+		xmlns="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd"
+        elementFormDefault="qualified"
 >
-	<xsd:element name="PurchaseOrder" type="tns:PurchaseOrderType"/>
-	<xsd:complexType name="PurchaseOrderType">
+	<xsd:element name="PurchaseOrder" type="tPurchaseOrderType"/>
+
+	<xsd:complexType name="tPurchaseOrderType">
 		<xsd:sequence>
-			<xsd:element name="ShipTo" type="tns:USAddress" maxOccurs="2"/>
-			<xsd:element name="BillTo" type="tns:USAddress"/>
+			<xsd:element name="ShipTo" type="tAddress" maxOccurs="2"/>
+			<xsd:element name="BillTo" type="tAddress"/>
 		</xsd:sequence>
 		<xsd:attribute name="OrderDate" type="xsd:date"/>
 	</xsd:complexType>
 
-	<xsd:complexType name="USAddress">
+	<xsd:complexType name="tAddress">
 		<xsd:sequence>
 			<xsd:element name="name"   type="xsd:string"/>
 			<xsd:element name="street" type="xsd:string"/>
