@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="XSDschema"
+    targetNamespace="http://Niklas306.XSDschema.org/XSDschema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://Niklas306.XSDschema.org/XSDschema.xsd"
+    xmlns:mstns="http://Niklas306.XSDschema.org/XSDschema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+</xs:schema>
