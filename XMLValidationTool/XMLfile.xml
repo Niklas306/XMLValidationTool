@@ -1,2 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-
+<PurchaseOrder xmlns="http://NiklasJJ.XSDschema/PurchaseOrderSchema.xsd">
+	<ShipTo country="US" >
+		<name>Niklas Jozwiak</name>
+		<street>Hunoltstrasse 55</street>
+		<city>Dortmund</city>
+		<state>NRW</state>
+		<zip>44143</zip>
+	</ShipTo>
+	<BillTo>
+		<name>Niklas Jozwiak</name>
+		<street>Hunoltstraße 55</street>
+		<city>Dortmund</city>
+		<state>NRW</state>
+		<zip>44143</zip>
+	</BillTo>
+</PurchaseOrder>
