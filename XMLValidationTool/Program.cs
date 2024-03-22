@@ -1,53 +1,60 @@
-﻿using System.Xml;
-using System.Xml.Schema;
+﻿using XMLValidationTool;
 
-Console.WriteLine("Willkommen beim XML Validation Tool!\n\nGeben Sie den Pfad des XSD Schemas ein:");
+Properties properties = new Properties();
 
-string XSDschemaInput = Console.ReadLine();
+StartProgram();
 
-Console.WriteLine("\nGeben Sie den Pfad der XML Datei zur Validierung ein:");
 
-string XMLfileInput = Console.ReadLine();
 
-if (!string.IsNullOrEmpty(XSDschemaInput) && !string.IsNullOrEmpty(XMLfileInput))
+void StartProgram()
 {
-    Console.WriteLine("Starte Validierung...");
-    Validate(XSDschemaInput, XMLfileInput);
-}
+    Console.WriteLine("Welcome to the XML Validation Tool!\n\nEnter the path of the XSD schema:");
 
-Console.ReadLine();
+    string XSDschemaInput = Console.ReadLine();
 
+    Console.WriteLine("\nEnter the path of the XML file for validation:");
 
-void Validate(string xsdpath, string xmlpath)
-{
-    try
+    string XMLfileInput = Console.ReadLine();
+
+    if (!string.IsNullOrEmpty(XSDschemaInput) && !string.IsNullOrEmpty(XMLfileInput))
     {
-        XmlReaderSettings settings = new XmlReaderSettings();
-        settings.ValidationType = ValidationType.Schema;
-        settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessInlineSchema;
-        settings.ValidationFlags |= XmlSchemaValidationFlags.ProcessSchemaLocation;
-        settings.ValidationFlags |= XmlSchemaValidationFlags.ReportValidationWarnings;
-        settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
+        Console.WriteLine("\nStarte Validierung...\n");
+        LoadXML xmlValidator = new LoadXML();
+        bool isValid = xmlValidator.ProcessXMLFile(XMLfileInput, XSDschemaInput);
 
-        XmlReader reader = XmlReader.Create(xmlpath, settings);
-        XmlDocument document = new XmlDocument();
-        document.Load(reader);
+        if (isValid)
+        {
+            Console.WriteLine("validation successful!\n");
+        } else
+        {
+            Console.WriteLine("validation unsuccessful: " + properties.ValidationMessage + "\n");
+        }
 
-        document.Validate(ValidationCallback);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Ausnahme: " + ex.Message + " ausgelöst!");
+        Console.Write("should another file be validated? Type YES or NO: ");
+        properties.UserInput = Console.ReadLine();
+        NextValidation();
     }
 }
 
-static void ValidationCallback(object sender, ValidationEventArgs args)
+//After the current validation has ended, the user is asked whether another validation should take place
+void NextValidation()
 {
-    if (args.Severity == XmlSeverityType.Warning)
+    if (properties.UserInput.Equals("YES"))
     {
-        Console.WriteLine("\tWarning: Matching schema not found. No validation occured." + args.Message);
-    } else
+        Console.Clear();
+        StartProgram();
+    }
+    else if (properties.UserInput.Equals("NO"))
     {
-        Console.WriteLine("\tValidation error: " + args.Message);
+        Environment.Exit(0);
+    }
+    else
+    {
+        Console.Clear();
+        Console.WriteLine("\nplease enter a valid answer\n\n");
+
+        Console.Write("should another file be validated? Type YES or NO: ");
+        properties.UserInput = Console.ReadLine();
+        NextValidation();
     }
 }
