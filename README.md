@@ -24,8 +24,8 @@ This command line tool can be used to validate an XML file against an XSD schema
 2. First enter the file path of the XSD schema
 3. Next, enter the file path of the XML file
 4. After validation is complete, you can choose whether another file should be validated
-   If you enter YES, follow steps 2 - 4
-   If you enter NO, the program will exit
+5. If you enter YES, follow steps 2 - 4
+6. If you enter NO, the program will exit
 
 ***
 
