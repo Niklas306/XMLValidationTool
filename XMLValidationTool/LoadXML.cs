@@ -20,14 +20,14 @@ namespace XMLValidationTool
                 {
                     while (reader.Read())
                     {
-                        //Validierung findet automatisch statt - Ausgabe des aktuellen Schrittes
+                        //Validation takes place automatically - output of the current step
                     }
                 }
                     return true;
             }
             catch (Exception ex)
             {
-                properties.ValidationMessage = $"Fehler beim Validieren der XML: {ex.Message}";
+                properties.ValidationMessage = $"Error validating XML: {ex.Message}";
                 return false;
             }
         }
