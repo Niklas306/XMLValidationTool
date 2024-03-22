@@ -18,7 +18,7 @@ void StartProgram()
 
     if (!string.IsNullOrEmpty(XSDschemaInput) && !string.IsNullOrEmpty(XMLfileInput))
     {
-        Console.WriteLine("\nStarte Validierung...\n");
+        Console.WriteLine("\nstart validation...\n");
         LoadXML xmlValidator = new LoadXML();
         bool isValid = xmlValidator.ProcessXMLFile(XMLfileInput, XSDschemaInput);
 
